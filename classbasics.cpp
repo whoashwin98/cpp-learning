@@ -4,7 +4,7 @@ using namespace std;
 
 // the rule of 3: if a class defines any one of these three constructors then it should define
 // all of them - constructor, destructor, and copy constructor (also include copy assignment operator)
-
+// the destructor becomes optional when we are using any data structure which will be able to deallocate itself
 
 // access specifiers for classes: private, protected and public
 // private: members are accessible only inside the class, by member & friend functions, and cannot be inherited.
