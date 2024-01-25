@@ -11,7 +11,7 @@ using namespace std;
 
 // string: used to store and modify a sequence of characters which are stored contiguously.
 
-// string_view: provides read-only view to a string
+// string_view: provides read-only view to a string (only contains a char pointer and size)
 // now, memory problems will occur when strings are passed to functions, and it may lead to slowing down of performance.
 // to avoid this, we can pass the string by reference, may as well make it const (if no modification is involved)
 // but even after passing by reference, allocation of memory happens.

@@ -65,6 +65,7 @@ class Person {
  
 class Father : virtual public Person { 
 	public:
+		Father() {}
 		Father(int x) : Person(x)   {
 		cout << "Father::Father(int) called" << endl;
 		}
@@ -73,6 +74,7 @@ class Father : virtual public Person {
  
 class Mother : virtual public Person { 
 	public:
+		Mother() {}
 		Mother(int x) : Person(x) {
 			cout << "Mother::Mother(int) called" << endl;
 		}
@@ -81,6 +83,7 @@ class Mother : virtual public Person {
  
 class Child : public Father, public Mother  { 
 	public:
+		Child() {}
 		Child(int x) : Mother(x), Father(x) {
 			cout << "Child::Child(int) called" << endl;
 		}
@@ -89,6 +92,6 @@ class Child : public Father, public Mother  {
 
 
 int main() {
-	Child child(3);
+	Child child;
     return 0;
 }

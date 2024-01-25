@@ -1,6 +1,5 @@
 // friend function and friend classes in CPP
 #include <iostream>
-using namespace std;
 
 // friend function: a non-member function which is able to access the private data members and member functions of a class.
 // note that these functions do not belong to the class, and can be invoked without using objects.
@@ -10,64 +9,98 @@ using namespace std;
 // of another class, and in such a case we cannot keep individually declaring each function as a friend.
 // friend class: an external class whose member functions are allowed to access the private members of another class.
 
-// forward declaration
-class Complex;
+// declaring A after B is not working. 
+/* error: 
+friendfuncclass.cpp:18:27: error: unknown type name 'A'
+        void incrementAll(A& a) { a.a_pvt++; a.a_prot++; a.a_pub++; }   
+                          ^
+*/
 
-class Calculator
-{
-public:
-    int add(int a, int b)
-    {
-        return (a + b);
-    }
+// forward declaration used only when B is declared before A here
+// now we also need to ensure that the member functions of B are not accessing any members of A because then it will throw this error"
+/*
+friendfuncclass.cpp:39:36: error: member access into incomplete type 'A'
+        void incrementAll(A& a) { a.a_pvt++; a.a_prot++; a.a_pub++; }   
+                                   ^
+friendfuncclass.cpp:34:7: note: forward declaration of 'A'
+class A;
+      ^
+*/
 
-    int sumRealComplex(Complex, Complex);
-    int sumCompComplex(Complex, Complex);
+class A;
+
+// friend class which if not declared as friend will not be able to access private and protected members
+class B {
+    public: 
+        void incrementAll(A& a);
+        void decrementAll(A& a);
+        void setToValue(A& a, int x, int y, int z);
 };
 
+class A {
+    private:
+        int a_pvt;
+    protected:
+        int a_prot;
+    public: 
+        int a_pub;
+        A() { a_pvt = 0; a_prot = 1; a_pub = 2; }
 
-class Complex
-{
-    int a, b;
-    // individually declaring functions as friends
-    // friend int Calculator ::sumRealComplex(Complex, Complex);
-    // friend int Calculator ::sumCompComplex(Complex, Complex);
+        // this function can now be defined outside the class (non-member)
+        friend void modifyFriend(A& a, int x, int y, int z);
 
-    // alternatively, declaring the entire calculator class as friend
-    friend class Calculator;
+        // this class has now been declared as a friend
+        friend class B;
 
-public:
-    void setNumber(int n1, int n2)
-    {
-        a = n1;
-        b = n2;
-    }
-
-    void printNumber()
-    {
-        cout << "Your number is " << a << " + " << b << "i" << endl;
-    }
+        void modifyClass(int x, int y, int z) {
+            a_pvt = x; a_prot = y; a_pub = z;
+        }
+        
+        void display() {
+            std::cout << "private var value: " << a_pvt << std::endl;
+            std::cout << "protected var value: " << a_prot << std::endl;
+            std::cout << "public var value: " << a_pub << std::endl;
+        }
 };
 
-int Calculator ::sumRealComplex(Complex o1, Complex o2)
-{
-    return (o1.a + o2.a);
-}
+void B :: incrementAll(A& a) { a.a_pvt++; a.a_prot++; a.a_pub++; }   
+void B :: decrementAll(A& a) { a.a_pvt--; a.a_prot--; a.a_pub--; }   
+void B :: setToValue(A& a, int x, int y, int z) { a.a_pvt = x; a.a_prot = y; a.a_pub = z; } 
 
-int Calculator ::sumCompComplex(Complex o1, Complex o2)
-{
-    return (o1.b + o2.b);
+// declaring B after A is working
+// friend class which if not declared as friend will not be able to access private and protected members
+/*
+class B {
+    public: 
+        void incrementAll(A& a) { a.a_pvt++; a.a_prot++; a.a_pub++; }   
+        void decrementAll(A& a) { a.a_pvt--; a.a_prot--; a.a_pub--; }   
+        void setToValue(A& a, int x, int y, int z) { a.a_pvt = x; a.a_prot = y; a.a_pub = z; } 
+};
+*/
+
+// if this is not declared as a friend then it will not be able to access private and protected members
+void modifyFriend(A& a, int x, int y, int z) {
+    a.a_pvt = x;
+    a.a_prot = y;
+    a.a_pub = z;
 }
 
 int main()
 {
-    Complex o1, o2;
-    o1.setNumber(1, 4);
-    o2.setNumber(5, 7);
-    Calculator calc;
-    int res = calc.sumRealComplex(o1, o2);
-    cout << "The sum of real part of o1 and o2 is " << res << endl;
-    int resc = calc.sumCompComplex(o1, o2);
-    cout << "The sum of complex part of o1 and o2 is " << resc << endl;
+    A a;
+    a.modifyClass(12, 13, 14);
+    a.display();
+
+    modifyFriend(a,123123,54463,8908);
+    a.display();
+
+    B b;
+    b.setToValue(a,0,1,2);
+    a.display();
+    b.incrementAll(a);
+    a.display();
+    b.decrementAll(a);
+    a.display();
+
     return 0;
 }
