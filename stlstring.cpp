@@ -17,12 +17,35 @@ using namespace std;
 // but even after passing by reference, allocation of memory happens.
 // to get away with this, we can make use of string_view.
 
+/*
+    when converted a sample code which takes string as function argument to assembly code, this was the result:
+    
+    printMessage(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+        ......
+
+    we can see that the allocator is being used which basically means there is a copy being made for the function
+    which would not affect the performance much in smaller code bases but would make significant impact in larger
+    code bases.
+
+    this is where using string_view makes the performance faster, as it is able to provide a read-only view of
+    the string being passed as an argument, hence eliminating the possibility of copy creations.
+    the assembly code for the same sample code which used string_view as function argument was:
+
+    printMessage(std::basic_string_view<char, std::char_traits<char> >):
+        ......
+    
+    it is clear that there is no allocator being used. string_view class provides strings which cannot be changed
+    and are read-only, mostly useful for passing strings (which do not change their values) as arguments to functions
+*/
+
 int main() {
     
     /*
     // creating strings - constructor
     string a("First String Is The Largest String");
     cout << a << endl;
+
+    // std::string str1({'a','s','h'});     // cannot create a string from an array of characters
 
     // creating strings - assignment operator
     string b = "Second String";
@@ -64,7 +87,7 @@ int main() {
     // clear() function is used to empty the string
     a.clear();
 
-    // replace a specific portion of the string -- ??
+    // replace a specific portion of the string
     // runs in linear time
     b.replace(b.begin() + 7, b.end(), "Smallest");
     cout << b << endl;
