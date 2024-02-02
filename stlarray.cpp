@@ -2,6 +2,15 @@
 #include <iostream>
 #include <array>
 
+/*
+    IMPORTANT LINKS FOR REFERENCE: 
+    https://www.quora.com/What-is-the-difference-between-std-array-and-C-style-arrays-in-C
+    https://stackoverflow.com/questions/60235741/in-c-what-is-the-point-of-stdarray-if-the-size-has-to-be-determined-at-compi
+    https://stackoverflow.com/questions/1239938/accessing-an-array-out-of-bounds-gives-no-error-why
+    https://www.reddit.com/r/cpp_questions/comments/9twbbb/stdarray_dynamic_size/
+*/
+
+
 // array is a container which has homogeneous elements and is of a fixed size
 // unlike a C-style array, it doesn't decay to pointer type automatically
 
