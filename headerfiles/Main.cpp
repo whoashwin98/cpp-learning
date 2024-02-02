@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Log.h"
 #include "Complex.h"
+#include "Second.h"
 
 /*
 The purpose of headers, and the reason why there are two kinds of source files with names ending in different 
@@ -19,6 +20,7 @@ other stuff that's already been compiled, so that it can compile the calls to th
 */
 
 int main() {
+    /*
     initLog();
     Log("Hello World!");
 
@@ -37,5 +39,10 @@ int main() {
     c2.conjugate();
     c2.print();
 
+    */
+
+    secondFunc();
+    firstFunc();
+    
     return 0;
 }
