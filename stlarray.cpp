@@ -67,9 +67,9 @@ int main() {
     // SPECIAL CASE: for a zero-length array (N == 0), in that case, array.begin() == array.end(), which is some unique value. 
     // The effect of calling front() or back() on a zero-sized array is undefined. 
     std::array<int, 0> zeroArr;
-    std::cout << arr.begin() << " $$$ " <<  arr.end() << std::endl;
-    std::cout << "Front element: " << zeroArr.front() << std::endl;
-    std::cout << "Back element: " << zeroArr.back() << std::endl;
+    // std::cout << arr.begin() << " $$$ " <<  arr.end() << std::endl;
+    // std::cout << "Front element: " << zeroArr.front() << std::endl;
+    // std::cout << "Back element: " << zeroArr.back() << std::endl;
 
     // data() - returns a C-style pointer pointing to the first element in the array 
     int* ptr = arr.data();
@@ -114,6 +114,18 @@ int main() {
         std::cout << elem << " ";
     }
     std::cout << std::endl;
+
+    // creating multidimensional arrays
+    std::array<std::array<int, 4>, 3> mat;      // creates a matrix with 3 rows and 4 columns
+
+    // since the size is already determined here, we can easily initialise and manipulate using the [] operator
+    for(int i=0; i<3; i++) {
+        for(int j=0; j<4; j++) {
+            mat[i][j] = (i+1) * (j+1);
+            std::cout << mat[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 
     return 0;
 }
