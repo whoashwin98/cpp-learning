@@ -31,19 +31,6 @@ struct A {
     std::string s;
     A(std::string str) : s(std::move(str)) { std::cout << " constructed\n"; }
     A(const A& o) : s(o.s) { std::cout << " copy constructed\n"; }
-    A(A&& o) : s(std::move(o.s)) { std::cout << " move constructed\n"; }
-    A& operator=(const A& other)
-    {
-        s = other.s;
-        std::cout << " copy assigned\n";
-        return *this;
-    }
-    A& operator=(A&& other)
-    {
-        s = std::move(other.s);
-        std::cout << " move assigned\n";
-        return *this;
-    }
 };
 
 int main() {
@@ -113,6 +100,8 @@ int main() {
     
     // to make things faster, we can set the capacity of a vector initially by using the reserve method
     // if the number specified is less than the current capacity then no change is made
+    // if we reserve space beforehand, it helps to overcome the cost of expansion and copying which is done
+    // when the vector reaches its capacity
     vec.reserve(50);
     std::cout << "Capacity of the vector after reserve(): " << vec.capacity() << std::endl; 
 
@@ -166,11 +155,24 @@ int main() {
     std::cout << "After erasing 3 elements from positions 2 to 5: ";
     printVector(vec);
 
+    // resize is used to change the size of the vector to the desired size
+    // if desired size is less than actual, vector is shrunk. if desired size is more than actual, expanded and 
+    // specified value added as a filler
+    // time complexity is Linear in the difference between the current size and new size
+    // additional complexity possible due to reallocation if capacity is less than new size 
+    vec.resize(2);
+    std::cout << "After resizing down to 2 elements: ";
+    printVector(vec);
+
+    vec.resize(8, 101); // specifying 101 as the filler value 
+    std::cout << "After resizing up to 8 elements: ";
+    printVector(vec);
+
     // clear is used to erase all the elements in the array and make it empty
     vec.clear();
     std::cout << "After clear(): ";
     printVector(vec);
-    
+
     // emplace is used to insert elements in-place without having to create a copy of the object
     // this is especially useful in cases where we create a vector of objects - efficiency is improved
 
@@ -192,12 +194,6 @@ int main() {
 
     std::cout << "emplace:\n";
     container.emplace(container.end(), "one");
- 
-    std::cout << "emplace with A&:\n";
-    container.emplace(container.end(), two);
- 
-    std::cout << "emplace with A&&:\n";
-    container.emplace(container.end(), std::move(three));
     */
 
     // multidimensional vectors
