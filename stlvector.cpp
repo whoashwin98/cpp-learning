@@ -3,6 +3,13 @@
 #include <string>
 #include <vector>
 
+/*
+    IMPORTANT LINKS:
+    https://www.reddit.com/r/cpp_questions/comments/hpu2as/why_use_vector_over_deque/ (VECTOR VS. DEQUE)
+    https://stackoverflow.com/questions/22068188/the-difference-between-vector-and-deque (VECTOR VS. DEQUE - 2)
+    https://baptiste-wicht.com/posts/2012/12/cpp-benchmark-vector-list-deque.html (VECTOR VS. DEQUE VS. LIST)
+*/
+
 // vectors are sequential containers which contain elements in contiguous fashion and can change in size
 // their storage is handled by the compiler
 // they occupy more space than static arrays because they need room for expansion (more memory allocated)
