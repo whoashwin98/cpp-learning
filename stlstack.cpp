@@ -15,7 +15,6 @@
 // container adaptors are wrappers around the existing container classes, providing a specific
 // interface for performing certain operations - tailored to a specific use case or data structure
 // they do not encapsulate their own storage, rather they use an underlying container to manage the elements
-
 // stack is a container adaptor, which provides Last In First Out (LIFO) functionality
 // the underlying container used to manage the stack is deque by default, but we can give any container
 // that satisfies the properties of SequenceContainer
