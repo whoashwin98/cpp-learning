@@ -5,7 +5,8 @@
 /*
     IMPORTANT LINKS:
     https://chat.openai.com/c/a8eca3ca-af79-4a0d-b3e9-01a27ea72bcb (SET AND RED-BLACK TREES EXPLANATION)
-
+    https://stackoverflow.com/questions/1349734/why-would-anyone-use-set-instead-of-unordered-set (NEED FOR SET AND UNORERED_SET AS PER REQUIREMENTS)
+    https://stackoverflow.com/questions/4343130/why-does-stl-set-have-count-when-all-elements-are-supposed-to-be-unique (WHY DOES STD::SET HAVE COUNT METHOD)
 */
 
 // associative containers are those which implement sorted data structures which facilitate logarithmic time searching

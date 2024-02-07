@@ -7,6 +7,7 @@
     IMPORTANT LINKS:
     https://chat.openai.com/c/c64a119a-403b-4714-b8fa-30240ee1cf37 (UNORDERED_SET POINTS)
     https://stackoverflow.com/questions/14851249/whats-the-difference-between-the-rehash-and-reserve-methods-of-the-c-unor (REHASH VS. RESERVE)
+    https://stackoverflow.com/questions/1349734/why-would-anyone-use-set-instead-of-unordered-set (NEED FOR SET AND UNORERED_SET AS PER REQUIREMENTS)
 */
 
 // unordered_set is an associative container that contains a set of unique keys. searching, insertion and removal occur in average constant time
@@ -49,7 +50,6 @@ struct hash {
 };
 
 int main() {
-    /*
     std::unordered_set<int> us{5,1,4,2,3};
 
     std::cout << "Original unordered_set: ";
@@ -191,9 +191,10 @@ int main() {
     us.clear();
     std::cout << "After clear: ";
     printUnorderedSet(us);
-    */
+
 
     // unordered_set with custom hash function
+    /*
     std::unordered_set<int, hash> us {5,1,2,4,3};
     std::vector<int> vec{5,6,7,8,9,10};
     us.insert(vec.begin(), vec.end());
@@ -208,7 +209,8 @@ int main() {
         }
         std::cout << std::endl;
     }
-
+    */
+    
     // emplace and emplace_hint are applied for achieving faster performance for insertion when the container involves complex objects
 
     return 0;
