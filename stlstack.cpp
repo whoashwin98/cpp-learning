@@ -15,12 +15,13 @@
 // container adaptors are wrappers around the existing container classes, providing a specific
 // interface for performing certain operations - tailored to a specific use case or data structure
 // they do not encapsulate their own storage, rather they use an underlying container to manage the elements
-// stack is a container adaptor, which provides Last In First Out (LIFO) functionality
-// the underlying container used to manage the stack is deque by default, but we can give any container
-// that satisfies the properties of SequenceContainer
 
-// use case for stack comes in when we need to have the most recent result ready to be fetched, like a cache
-// undo functions, backtracking algorithms, etc.
+// stack is a container adaptor, which provides Last In First Out (LIFO) functionality
+// the underlying container used to manage the stack is deque by default, but we can give 
+// any container which supports insertion and deletion at the back (that satisfies the properties of SequenceContainer)
+// for std::stack, the containers which can be used are: std::deque, std::vector and std::list
+
+// use case for stack comes in when we need to have the most recent result ready to be fetched, like a cache, undo functions, backtracking algorithms, etc.
 
 struct A {
     std::string s;
@@ -56,12 +57,12 @@ void printListStack(std::stack<int, std::list<int>> st) {
 }
 
 int main() {
-    // creating a stack initially containing elements from a deque
+    // creating a stack initially containing some elements 
     std::deque<int> dq{1,2,3,4,5,6};
     std::vector<int> vec{11,22,33,44,55,66};
     std::list<int> lis{101,102,103,104,105,106};
 
-    // uses deque as the default underlying container
+    // uses std::deque as the default underlying container
     std::stack<int> deqStack(dq);
     // uses std::vector as its underlying container
     std::stack<int, std::vector<int>> vecStack(vec);
