@@ -2,6 +2,26 @@
 
 #include <iostream>
 
+/*
+    IMPORTANT NOTES:
+    
+    Explicit Type Casting: It is used when you need to convert from one data type to another, which is more direct and less constrained compared to 
+    the other C++ type casts like static_cast and dynamic_cast. It is considered unsafe because it allows conversion among unrelated types. This type
+    of casting should be used only when dealing with primitive data types like int, float, double, etc.
+    
+    static_cast<type>: It is a compile-time casting operator, which performs implicit conversions between related types, and user-defined conversions
+    via constructors between unrelated types. It is safer than explicit type casting because it provides compile-type checking. It is commonly used to
+    convert numerical types, upcasting in class hierarchies, and performing explicit type conversions. It is totally upto the programmer to ensure
+    that the type conversion being performed is valid at compile time, because this type of cast will not be able to perform run-time checks.
+
+    dynamic_cast<type>: It is a run-time casting operator, which ensures safe downcasting of pointers or references to objects in inheritance hierarchies.
+    It allows you to safely convert pointers or references of a base class to pointers or references of a derived class. It relies on Run Time Type 
+    Information (RTTI), which is a mechanism provided by C++ to obtain type information of objects at runtime. The requirement must be that, the classes
+    involved must be polymorphic (at least one virtual function). Also, dynamic_cast cannot be applied to non-pointer and non-reference types because 
+    other types, such as values, do not carry runtime type information in the same way pointers and references do. This cast returns the pointer or reference
+    if the conversion happens successfully, otherwise it returns a nullptr.
+*/
+
 class Base {
 public:
     int baseValue;
