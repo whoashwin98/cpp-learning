@@ -8,10 +8,11 @@
 // iterator based for loops use iterators instead of indices, which is somewhat similar; again might lead to errors if management is not done in proper
 // manner, and is compatible with containers and sequences which provide iterator support
 
-// range-based for loops provide a concise and readable way to iterate over the elements in a container or sequence without having to do the index
+// range-based for loops provide a concise and readable way to iterate over the elements in a container or sequence without having to do index
 // management - particularly useful when we want to perform operations on each element while iterating over them
-// they help avoid out-of-bound errors which may occur with traditional and iterator-based for loops
-// on top of that, they provide simplicity and easy readability of code
+// they provide simplicity and easy readability of code, and can iterate through any container that provides appropriate start and end iterators
+// prevents indexing or one-off mistakes which might have occurred with the traditional for loops
+// since these for loops iterate through the container by value, the container elements are not altered during the itereation
 
 int main() {
     std::vector<int> vec{1,2,3,4,5,6,7,8,9,10};
