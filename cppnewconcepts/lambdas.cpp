@@ -55,6 +55,9 @@ int main() {
 
     auto lambda4 = [](int x, int y) { return x+y+12; };
 
+    // we can also make a lambda return another lambda
+    auto lambda5 = [](int n) { return [=](int x) {return x+n;}; };
+
     lambda1();
     std::cout << "Capture values passed by value: " << std::endl;
     lambda2();
@@ -62,6 +65,7 @@ int main() {
     std::cout << "Capture values passed by reference: " << std::endl;
     lambda3();
     std::cout << "Lambda with return value and parameters: " << lambda4(x, y) << std::endl;
+    std::cout << "Nested lambda call result: " << lambda5(5)(10) << std::endl;
 
     return 0;
 }

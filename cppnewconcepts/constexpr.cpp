@@ -15,6 +15,16 @@ constexpr int factorial(int n) {
     }
 }
 
+// non-constexpr function
+int add(int a, int b) {
+    return a + b;
+}
+
+// constexpr function calling a non-constexpr function
+constexpr int multiply(int a, int b) {
+    return add(a, b);
+}
+
 int main() {
     std::random_device rd;
 

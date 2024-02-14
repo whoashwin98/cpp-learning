@@ -50,6 +50,14 @@ void(*getFunction(bool cond))() {
     return (cond ? first : second);
 }
 
+// an example class to demonstrate how function pointers can be used to point to member functions
+class Example {  
+    public: 
+        int x;
+        Example() : x{0} {}
+        Example(int _x) : x{_x} {}
+        void modifyX(int newX) { x = newX; }
+};
 
 
 int main() {
@@ -77,6 +85,14 @@ int main() {
     // function to be called when
     getFunction(true)();
     getFunction(false)();
+
+    // a function pointer that points to a class' member function
+    Example e;
+    void (Example::*memFunPtr)(int) = &Example::modifyX;
+
+    std::cout << "Initial value of x: " << e.x << std::endl;
+    (e.*memFunPtr)(456);
+    std::cout << "Final value of x: " << e.x << std::endl;
 
     return 0;
 }

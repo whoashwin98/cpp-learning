@@ -20,6 +20,10 @@ void print(auto value) {
     std::cout << value << "\t" << typeid(value).name() << std::endl;
 }
 
+auto mul(auto x, auto y) {
+    return x * y;
+}
+
 int main() {
     // an example using primitive data types on how auto deduces the data type
     auto integer = 42;
@@ -63,5 +67,12 @@ int main() {
         std::cout << std::endl;
     }
 
+    // here, since both are integers, the returned value is also of type int
+    std::cout << "Division of two integers: " << typeid(mul(12, 3)).name() << std::endl;
+    // here, since one of the values is of float type, the result is upgraded to float type and returned
+    std::cout << "Division of one int and one float: " << typeid(mul(12.0f, 3)).name() << std::endl;
+    // here, since both are floats, the returned value is also of type float
+    std::cout << "Division of both floats: " << typeid(mul(12.0f, 3.0f)).name() << std::endl;
+ 
     return 0;
 }

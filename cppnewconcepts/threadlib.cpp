@@ -5,6 +5,13 @@
 #include <mutex>
 #include <atomic>
 
+/*
+    IMPORTANT LINKS:
+    https://stackoverflow.com/questions/31978324/what-exactly-is-stdatomic (STD::ATOMIC AND ITS SIGNIFICANCE)
+
+
+*/
+
 // threads are the smallest unit of execution in a program. they allow multiple functions to run concurrently
 // the std::thread library in C++ provides a mechanism for creating and managing concurrent execution threads
 
