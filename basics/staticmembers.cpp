@@ -6,14 +6,8 @@ using namespace std;
 
 // inside a class definition, a static data member denotes that it will not be unique for every single object, but will be
 // common for all objects. it can be accessed without having to instantiate any objects of any class. 
-
 // static member functions are those functions which are not associated with any object and can only be used
-// to modify static variables
-
-// another usage of the keyword 'static' is done outside of the class scope (linking)
-// when a variable or function is marked as static, it signifies that the linker will not be able to
-// locate them during the linking process, if another file is trying to access a variable or function
-// of the same name.
+// to modify static variables or make calls to other static member functions
 
 class X {
     public: 

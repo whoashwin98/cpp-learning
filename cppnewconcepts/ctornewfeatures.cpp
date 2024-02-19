@@ -21,6 +21,9 @@ class Dummy {
 // but it makes an unnecessary call to the default constructor - what happens is when we initialise this OldEntity
 // object, the Dummy object is also initialised once with the default constructor, before the actual parameterised
 // constructor for Dummy is called inside the OldEntity constructor
+
+// such calling of constructors twice makes for performance issues
+// whereas with initialiser lists, there is only one occurrence of calling of the constructors 
 class OldEntity {
     private: 
         std::string name;
@@ -28,7 +31,9 @@ class OldEntity {
     
     public: 
         OldEntity() {
+            // it is almost like having Dummy dummy; in this line - create a default constructed object first
             name = "unknown";
+            // then another call is made to the parameterised constructor here
             dummy = Dummy(0);
         }
 

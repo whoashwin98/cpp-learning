@@ -3,6 +3,13 @@
 #include <vector>
 #include <algorithm>
 
+/*
+    IMPORTANT LINKS: 
+    https://stackoverflow.com/questions/356950/what-are-c-functors-and-their-uses (FUNCTORS AND THEIR USES)
+    https://stackoverflow.com/questions/6451866/why-use-functors-over-functions (WHY USE FUNCTORS OVER FUNCTIONS)
+
+*/
+
 // function objects or functors are objects that behave like functions. it overloads the operator(), which allows
 // the classes to be invoked as if they were functions. they are a more flexible and powerful alternative
 // to function pointers.
