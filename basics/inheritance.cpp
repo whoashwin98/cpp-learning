@@ -90,8 +90,50 @@ class Child : public Father, public Mother  {
 		~Child() { cout << "Child object destructed" << endl; }
 };
 
+// virtual destructors - used to avoid memory leaks in inheritance hierarchy, especially ones where memory allocation is involved
+class Base {
+	public:
+	int* baseArr;
+	Base() : baseArr(new int[10]) {
+		std::cout << "Base Constructor!" << std::endl;
+	}
+	
+	// destructor without the virtual keyword
+	// ~Base() {
+	// 	std::cout << "Base Destructor!" << std::endl;
+	// 	delete[] baseArr;
+	// }
+
+	// destructor with the virtual keyword
+	// making base class destructor virtual guarantees that the object of derived class is destructed properly, i.e., 
+	// both base class and derived class destructors are called
+	virtual ~Base() {
+		std::cout << "Base Destructor!" << std::endl;
+		delete[] baseArr;
+	}
+};
+
+class Derived : public Base {
+	public:
+	int* derivedArr;
+	Derived() : derivedArr(new int[15]) {
+		std::cout << "Derived Constructor!" << std::endl;
+	}
+
+	~Derived() {
+		std::cout << "Derived Destructor!" << std::endl;
+		delete[] derivedArr;
+	}
+};
 
 int main() {
-	Child child;
+	// Child child;
+
+	// deleting a derived class object using a pointer of base class type that has a non-virtual destructor results in undefined behavior. 
+	// to correct this situation, the base class should be defined with a virtual destructor. 
+
+	Base* base = new Derived();
+	// do some work here 
+	delete base;
     return 0;
 }

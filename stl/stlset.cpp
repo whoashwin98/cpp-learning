@@ -18,7 +18,8 @@
 // supports bidirectional iteration, expands and contracts dynamically
 
 // iterators - used to print the set
-void printSet(std::set<int> s) {
+template<typename T>
+void printSet(std::set<T> s) {
     for(auto it = s.begin(); it != s.end(); it++) {
         std::cout << *it << " ";
     }
@@ -32,6 +33,14 @@ class A {
     A(const A& o) { x = o.x; std::cout << " copy constructed\n"; }
     bool operator<(const A& other) const {
         return x < other.x;
+    }
+};
+
+// a custom comparator (functor) for a set of strings
+class StringCompare {
+    public: 
+    bool operator()(const std::string& lhs, const std::string& rhs) const {
+        return lhs.length() < rhs.length();
     }
 };
 
@@ -149,7 +158,7 @@ int main() {
     std::cout << "After merging:\n";
     std::cout << "S1: "; printSet(s1);
     std::cout << "S2: "; printSet(s2);
-    */
+
 
     // emplace and emplace_hint are applied for achieving faster performance for insertion when the container involves complex objects
     std::set<A> s;
@@ -168,6 +177,38 @@ int main() {
     std::cout << "emplace with hint:\n";
     s.emplace_hint(s.begin(), 0);
     std::cout << " first element: " << s.begin()->x << std::endl;
+    */
+    // code to demonstrate how a custom Compare function can be written for a set
+    // a set with the default std::less comparator
+    std::set<std::string> s1;
+
+    s1.insert("first");
+    s1.insert("second");
+    s1.insert("third");
+    s1.insert("twentieth"); 
+    s1.insert("hundredth");
+    s1.insert("fifth");
+    s1.insert("sixth");
+    s1.insert("twelfth");
+
+    std::cout << "Set of strings without custom comparator: ";
+    printSet(s1);
+
+    std::set<std::string, StringCompare> s2;
+    s2.insert("first");
+    s2.insert("second");
+    s2.insert("third");             // omitted since a string of length 5 already exists
+    s2.insert("twentieth"); 
+    s2.insert("hundredth");         // omitted since a string of length 10 already exists
+    s2.insert("fifth");             // omitted since a string of length 5 already exists
+    s2.insert("sixth");             // omitted since a string of length 5 already exists
+    s2.insert("twelfth");
+
+    std::cout << "Set of strings with custom comparator: ";
+    for(auto it : s2) {
+        std::cout << it << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }

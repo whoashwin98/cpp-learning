@@ -48,11 +48,13 @@ class OldEntity {
 };
 
 // using initialiser lists with constructors, avoids this unnecessary default constructor call which would save
-// us from performance issues in large-scale projects (imagine Dummy object doing heavy work like allocation of memory or opening of files)
+// us from performance issues (imagine Dummy object doing heavy work like allocation of memory or opening of files)
 
 // another reason for usage of initialiser lists is due to the constructor of base class being called first - following
 // the order of construction - if your base class has only parameterised constructor, then it is necessary to use
 // this member initialiser list syntax to ensure that the base constructors are called in order
+
+// it is also used to initialise any const data members which need to be initialised separately for each entity
 
 // it also enables us to initialise data members to the exact required state, instead of having to initialise them 
 // to their default state and then changing their state to the required one
@@ -61,12 +63,16 @@ class OldEntity {
 class NewEntity {
     private: 
         std::string name;
+        const int id;
         Dummy dummy;
     
     public: 
-        NewEntity() : name{"Unknown"}, dummy(0) { }
+        NewEntity() : name{"Unknown"}, dummy(0), id(-1)
+        { 
+            // id = -1; --> cannot do this because it is a const member - have to initialise in member initialiser list
+        }
 
-        NewEntity(const std::string& _name, int num) : name(std::string(_name)), dummy(num) { }
+        NewEntity(const std::string& _name, int num) : name(std::string(_name)), dummy(num), id(1000 + num) { }
         
         void print() {
             std::cout << "Name: " << name << std::endl;
