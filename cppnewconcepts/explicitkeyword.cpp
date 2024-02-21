@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+// https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean (WHY USE THE EXPLICIT KEYWORD)
+
 // when you use the 'explicit' keyword with a constructor, the implicit conversion functionality gets disabled
 
 // which means the C++ compiler stops peforming implicit conversions to the object type, and rather wants the user

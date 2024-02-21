@@ -2,7 +2,12 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
+#include <array>
+#include <vector>
 #include <list>
+
+// https://stackoverflow.com/questions/34758042/is-there-a-downside-to-declaring-variables-with-auto-in-c (LIMITATIONS OF USING AUTO)
 
 // there is a subtle difference between using typedef and using auto
 // with typedef, we are only provding an alias for a long data type name, we have to specify that alias explicitly
@@ -24,7 +29,16 @@ auto mul(auto x, auto y) {
     return x * y;
 }
 
+// testing the usage of auto further - trying to break the program wherever possible
+void iterateContainer(auto container) {
+    for(auto it  = container.begin(); it != container.end(); it++) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
+
 int main() {
+    /*
     // an example using primitive data types on how auto deduces the data type
     auto integer = 42;
     print(integer);
@@ -73,6 +87,28 @@ int main() {
     std::cout << "Division of one int and one float: " << typeid(mul(12.0f, 3)).name() << std::endl;
     // here, since both are floats, the returned value is also of type float
     std::cout << "Division of both floats: " << typeid(mul(12.0f, 3.0f)).name() << std::endl;
- 
+    */
+    int oldArr[4] = {10,20,30,40};
+    std::array<int, 5> arr{1,2,3,4,5};
+    std::vector<double> vec{1.0, 2.1, 3.4, 4.7, 5.54, 6.78, 7.9, 8.0};
+    std::string str{"hello world"};
+    std::unordered_set<char> st{'a', 'b', 'c', 'd', 'e', 'f'};
+    std::unordered_map<char, int> mp{{'a', 97}, {'b', 98}, {'c', 99}};
+
+    iterateContainer(arr);
+    iterateContainer(vec);
+    iterateContainer(str);
+    iterateContainer(st);
+
+    // produces errors at run-time for these function calls
+    // traditional C-style arrays decay to pointers when passed to functions, and do not have iterators
+    // iterateContainer(oldArr);
+    // the function written accesses elements by dereferencing, and unordered_map returns a pair which cannot be printed directly
+    // iterateContainer(mp);
+
+    // note that once type has been deduced by the compiler, it cannot be changed - since C++ is a strongly typed language
+    auto var = 123;
+    var = 1.23;
+    std::cout << var << std::endl;
     return 0;
 }

@@ -1,6 +1,8 @@
 // default and delete functions in CPP
 #include <iostream>
 
+// https://learn.microsoft.com/en-us/cpp/cpp/explicitly-defaulted-and-deleted-functions?view=msvc-170 (DEFAULT AND DELETE CONSTRUCTORS)
+
 // delete and default are special keywords which are used to control the behaviour of constructors
 // this feature has been provided in order to have more control and managability with constructors in C++
 

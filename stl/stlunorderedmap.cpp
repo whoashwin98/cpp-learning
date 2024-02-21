@@ -25,11 +25,28 @@ std::string printKeyValue(std::string key, int value) {
     return "(" + key + ", " + std::to_string(value) + ")";
 }
 
+// custom hash function
 struct hash {
     constexpr std::size_t operator()(const std::string& x) const noexcept {
         return x.size();
     }
 };
+
+// custom hash and key-equal functions for unordered_map
+class StringHash {
+    public:
+    std::size_t operator()(const std::string& str) const {
+        return str.length();
+    }
+};
+
+class StringKeyEqual {
+    public:
+    bool operator()(const std::string& lhs, const std::string& rhs) const {
+        return lhs.length() < rhs.length();
+    }
+};
+
 
 int main() {
     /*
@@ -236,7 +253,6 @@ int main() {
     mp.clear();
     std::cout << "After clear: " << std::endl;
     printUnorderedMap(mp);
-    */
 
     // unordered_map with custom hash function
     std::unordered_map<std::string, int, hash> mp;
@@ -251,7 +267,28 @@ int main() {
         }
         std::cout << std::endl;
     }
+    */
 
+    // unordered_map with custom hash and custom key-equal functor
+    std::unordered_map<std::string, int, StringHash, StringKeyEqual> mp;
+    mp.insert({"first", 1});
+    mp.insert({"second", 2});
+    mp.insert({"zero", 0});
+    mp.insert({"seventh", 7});
+    mp.insert({"eleventh", 11});
+    mp.insert({"fourth", 4});
+
+    // printing the map contents
+    for(int i=0; i<mp.bucket_count(); i++) {
+        auto begin = mp.begin(i);
+        auto end = mp.end(i);
+        std::cout << "Bucket " << i << " -> ";
+        std::cout << "Size: " << mp.bucket_size(i) << "\tContents: ";
+        for(auto it = begin; it != end; it++) {
+            std::cout << "(" << it->first << ", " << it->second << ")" << std::endl;
+        }
+        std::cout << std::endl;
+    }
 
     return 0;
 }

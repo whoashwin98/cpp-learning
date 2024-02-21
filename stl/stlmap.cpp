@@ -29,8 +29,16 @@ std::string printKeyValue(std::string key, int value) {
     return "(" + key + ", " + std::to_string(value) + ")";
 }
 
-int main() {
+// custom compare functor for map of string and int
+class StringCompare {
+    public: 
+    bool operator()(const std::string& lhs, const std::string& rhs) const {
+        return lhs.length() < rhs.length();
+    }
+};
 
+int main() {
+    /*
     std::map<std::string, int> mp;
 
     // insert - used to insert elements (as key-value pairs) into the map. note that duplication of keys is not allowed
@@ -194,6 +202,21 @@ int main() {
     mp.clear();
     std::cout << "After clear: " << std::endl;
     printMap(mp);
+
+    */
+    // map with custom compare function
+    std::map<std::string, int, StringCompare> mp;
+
+    mp.insert({"first", 1});
+    mp.insert({"second", 2});
+    mp.insert({"zero", 0});
+    mp.insert({"", -1});
+
+    // printing the map contents
+    for(auto it = mp.begin(); it != mp.end(); it++) {
+        std::cout << it->first << " -> " << it->second << std::endl;
+    }
+    std::cout << std::endl;    
 
     return 0;
 

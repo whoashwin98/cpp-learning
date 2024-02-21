@@ -2,6 +2,8 @@
 #include <iostream>
 #include <random>
 
+// https://www.quora.com/What-are-the-advantages-of-using-constexpr-functions-in-C (WHY USE CONSTEXPR)
+
 // constexpr keyword indicates that a certain function or object can be evaluated at compile time rather than 
 // run time, whenever it is possible to do so - reducing runtime overheads - helps because some computations might be 
 // known already during compile time, and calling functions or objects for them during compile time reduces overhead

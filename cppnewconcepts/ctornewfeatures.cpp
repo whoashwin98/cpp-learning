@@ -5,6 +5,7 @@
 /*
     IMPORTANT LINKS:
     https://stackoverflow.com/questions/926752/why-should-i-prefer-to-use-member-initializer-lists (REASONS FOR USING MEMBER INITIALISER LISTS)
+    https://www.learncpp.com/cpp-tutorial/delegating-constructors/ (IMPORTANT POINTS FOR DELEGATING CONSTRUCTORS)
 
 */
 
@@ -156,12 +157,28 @@ class B {
         }
 }; 
 
+// an example for delegating constructors involving inheritance - calling base class constructor from derived class using this method
+class Base {
+    public: 
+    int baseVar;
+    Base() : Base(-1) { std::cout << "base default ctor" << std::endl; }
+    Base(int b) : baseVar(b) { std::cout << "base param ctor" << std::endl; }
+};
+
+class Derived : public Base {
+    public:
+    int derivedVar;
+    // Derived() : Derived(-1, -1) { std::cout << "derived default ctor" << std::endl; }
+    // Derived(int b, int d) : Base(b), derivedVar(d) { std::cout << "derived param ctor" << std::endl; }
+    Derived(int b = -1, int d = -1) : Base(b), derivedVar(d) { std::cout << "derived constructor with values: " << b << ", " << d << std::endl; }
+};
+
 int main() {
     // OldEntity first;
     // NewEntity second;
 
-    A a1;
-    A a2{"hello"};
+    // A a1;
+    // A a2{"hello"};
     
     // note that making the initialise function public will create problems as we might accidentally end up
     // resetting the object, and overwrite the values we were actually supposed to initialise it with
@@ -170,9 +187,14 @@ int main() {
     // a1.print();
     // a2.print();
 
-    B b1, b2(1,3);
-    b1.print();
-    b2.print();
+    // B b1, b2(1,3);
+    // b1.print();
+    // b2.print();
+
+    Base b;
+    Derived d1(111, 222);
+    Derived d2;
+    Derived d3(1);
 
     return 0;
 }

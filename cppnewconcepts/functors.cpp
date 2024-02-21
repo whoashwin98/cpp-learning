@@ -6,7 +6,7 @@
 /*
     IMPORTANT LINKS: 
     https://stackoverflow.com/questions/356950/what-are-c-functors-and-their-uses (FUNCTORS AND THEIR USES)
-    https://stackoverflow.com/questions/6451866/why-use-functors-over-functions (WHY USE FUNCTORS OVER FUNCTIONS)
+    https://stackoverflow.co    m/questions/6451866/why-use-functors-over-functions (WHY USE FUNCTORS OVER FUNCTIONS)
 
 */
 

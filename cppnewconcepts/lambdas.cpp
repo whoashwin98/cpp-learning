@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 
+// https://stackoverflow.com/questions/7627098/what-is-a-lambda-expression-and-when-should-i-use-one (WHEN TO USE LAMBDAS)
+
 // lambdas are anonymous functions which can be defined inline within your code. they provide a concise
 // way to create function objects without the need to declare and define them separately 
 // particularly useful when we have to pass short, one-off functions (like predicates to STL algorithms)
@@ -19,6 +21,14 @@
 int multiplyBy5(int x) {
     return x * 5;
 }
+
+// a functor to be used as a custom comparator to sort a vector of numbers
+class SortByOnes {
+    public:
+    bool operator()(const int& lhs, const int& rhs) const {
+        return (lhs % 10) < (rhs % 10);
+    }
+};
 
 int main() {
     std::vector<int> v{1,2,3,4,5,6,7,8,9,10};
@@ -44,7 +54,7 @@ int main() {
     // all possible types of lambda functions
     int x = 10, y = 15;
 
-    auto lambda1 = [](){ std::cout << "No args, no return type!" << std::endl; };
+    auto lambda1 = [](){ std::cout << "Lambda with no args, no return type!" << std::endl; };
 
     // by providing the mutable keyword, we are able to modify the capture values without which we are not
     // even allowed to modify them inside the lambda's body. changes are not reflected in the main variables   
@@ -66,6 +76,24 @@ int main() {
     lambda3();
     std::cout << "Lambda with return value and parameters: " << lambda4(x, y) << std::endl;
     std::cout << "Nested lambda call result: " << lambda5(5)(10) << std::endl;
+
+    // using an STL algorithm on an STL container to demonstrate usage of lambdas
+    std::vector<int> vec{549,7,890,78,23,465,36,2,64,901};
+    
+    std::cout << "Original vector: ";
+    for(auto v : vec) std::cout << v << " ";
+    std::cout << std::endl;
+
+    // had to define a function object class for this purpose - little harder
+    // std::sort(vec.begin(), vec.end(), SortByOnes());
+
+    // can be done in a much easier manner using lambdas
+    std::sort(vec.begin(), vec.end(), [](const int& lhs, const int& rhs){ return (lhs % 10) < (rhs % 10); });
+
+    std::cout << "Sorted vector: ";
+    for(auto v : vec) std::cout << v << " ";
+    std::cout << std::endl;
+
 
     return 0;
 }

@@ -1,5 +1,6 @@
 // nullptr in CPP
 #include <iostream>
+#include <string>
 
 // traditionally, in C programming, we have been using the NULL macro to represent null pointers
 // it has been defined as #define NULL 0 and is treated as an integer literal with the value 0
@@ -17,8 +18,21 @@ void fun(int* ptr) {
     std::cout << "int pointer func called" << std::endl;
 }
 
-int main() {
+// note that a class breaks down 
+class Entity {
+    private: 
+    std::string name;
+    int age;
 
+    public: 
+    Entity() = default;
+
+    const std::string& getName() const { return name; }
+    void printType() { std::cout << "Entity\n"; }
+};
+
+int main() {
+    /*
     int x = NULL;
     // this is allowed by the compiler, and also produces a valid result
     x = x+1;
@@ -43,6 +57,18 @@ int main() {
 
     // now if you call fun, the pointer one will be called since nullptr is type-safe and hence there is no ambiguity
     fun(y);
+    */
 
+    // working of nullptr with class objects
+    // now what this line does is, it provides address 0x0 to the pointer to Entity object
+    Entity* e = nullptr;
+
+    // whenever you try to access any data member 
+
+    // this function is able to execute because it does not involve access of any data member - still considered bad practice
+    e->printType();
+
+    // this function call throws an error because it accesses a data member
+    std::cout << e->getName() << std::endl;
     return 0;
 }

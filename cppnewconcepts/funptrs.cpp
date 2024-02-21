@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+// https://stackoverflow.com/questions/50609077/why-to-use-function-pointer (WHY TO USE FUNCTION POINTERS)
+
 // function pointers - store addresses of a function, and it allows you to pass functions as arguments to 
 // other functions, return functions from other functions and store functions in data structures
 // a pointer to a function points to the address of the executable code of the function
@@ -68,13 +70,18 @@ int main() {
 
     // a more convenient and readable way for writing function pointer assignment (using 'auto')
     auto messagePtr = &message;
+    
 
     // conventional method to write function pointer assignments
     // the syntax can be broken down into - returnType(*ptrName)(args)
     void(*messageWithArgsPtr)(std::string,int) = messageWithArgs;
     
-    messagePtr();
+    // explicit casting of a different type of function and assigning it to messagePtr
+    messagePtr = (void(*)())messageWithArgs;
+    
+    messagePtr();    // produces runtime errors because you are casting unrelated type of function pointers
     messageWithArgsPtr("This is a test.", 123);
+
 
     // an example of passing a function pointer to another function
     auto funcPtr = valuePrinter;

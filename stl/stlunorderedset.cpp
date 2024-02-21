@@ -49,7 +49,24 @@ struct hash {
     }
 };
 
+// custom hash function for an unordered_set of strings
+class StringHash {
+    public:
+    std::size_t operator()(const std::string& str) const {
+        return str.length();
+    }
+};
+
+// custom key equal function for an unordered_set of strings
+class StringKeyEqual {
+    public:
+    bool operator()(const std::string& lhs, const std::string& rhs) const {
+        return lhs.length() < rhs.length();
+    }
+};
+
 int main() {
+    /*
     std::unordered_set<int> us{5,1,4,2,3};
 
     std::cout << "Original unordered_set: ";
@@ -194,7 +211,6 @@ int main() {
 
 
     // unordered_set with custom hash function
-    /*
     std::unordered_set<int, hash> us {5,1,2,4,3};
     std::vector<int> vec{5,6,7,8,9,10};
     us.insert(vec.begin(), vec.end());
@@ -211,7 +227,30 @@ int main() {
     }
     */
     
+    // unordered_set with custom hash and custom keyequal functions
+    std::unordered_set<std::string, StringHash, StringKeyEqual> us;
+
+    us.insert("first");
+    us.insert("second");
+    us.insert("zero");
+    us.insert("seventh");
+    us.insert("eleventh");
+    us.insert("fourth");
+
+    // printing the elements of the set
+    for(int i=0; i<us.bucket_count(); i++) {
+        auto begin = us.begin(i);
+        auto end = us.end(i);
+        std::cout << "Bucket " << i << " -> ";
+        std::cout << "Size: " << us.bucket_size(i) << "\tContents: ";
+        for(auto it = begin; it != end; it++) {
+            std::cout << *it << " ";
+        }
+        std::cout << std::endl;
+    }
+    
     // emplace and emplace_hint are applied for achieving faster performance for insertion when the container involves complex objects
+
 
     return 0;
 }
