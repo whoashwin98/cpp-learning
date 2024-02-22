@@ -7,9 +7,7 @@
 
 /*
     IMPORTANT LINKS:
-    https://stackoverflow.com/questions/31978324/what-exactly-is-stdatomic (STD::ATOMIC AND ITS SIGNIFICANCE)
-
-
+    https://stackoverflow.com/questions/31978324/what-exactly-is-stdatomic (STD::ATOMIC AND ITS SIGNIFICANCE)   
 */
 
 // threads are the smallest unit of execution in a program. they allow multiple functions to run concurrently
@@ -51,7 +49,7 @@ void thirdFunc() {
 }
 
 // when we run many threads, what we can observe is that the printing to screen operation
-// takes place in a random manner, in othre words - there is no monitoring as to which thread uses the output console at what time
+// takes place in a random manner, in other words - there is no monitoring as to which thread uses the output console at what time
 // in order to control this, we make use of mutex (mutually exclusive) locks - which help a thread which has that lock hold on to a certain
 // resource until it lets go of the mutex lock, after which it is available for the other threads.
 std::mutex stdoutLock;
@@ -118,9 +116,11 @@ void sharedValueManipulator(int tid) {
 }
 
 int main() {
+    using namespace std::literals::chrono_literals;
+
     std::cout << "Number of concurrent threads supported: " << std::thread::hardware_concurrency() << std::endl;
+
     /*
-    
     std::thread first(firstFunc);
     std::thread second(secondFunc);
     std::thread third(thirdFunc);
@@ -155,6 +155,19 @@ int main() {
     // after detachment, the object becomes non-joinable, and the ability to manipulate it directly is lost
     third.detach();
 
+    // passing lambda functions to thread objects
+    auto lambda = [](int x) { 
+        while(x < 10) {
+            std::this_thread::sleep_for(0.5s);
+            std::cout << x << "\n";
+            x++;
+        }
+    };
+
+    std::thread lmdThread(lambda, -10);
+    lmdThread.join();
+    
+    std::cout << "Main thread finished.\n";
 
     // creating a vector of thread pointers
     std::vector<std::thread*> threads;
@@ -172,7 +185,7 @@ int main() {
         // removing only the thread object (from the heap) which is pointed by the thread pointer --- the thread pointer still remains in the vector!
         delete threads.at(i);
     }
-    */
+
     // note that once main function finishes, the vector of threads will also be de-allocated
     // we make sure we do not leave out any memory leaks by de-allocating those thread pointers whose thread execution has finished
 
@@ -210,7 +223,7 @@ int main() {
 
     reporter.join();
     worker.join();
-    std::cout << "Main thread finished.\n";
+    */
 
     return 0;
 }
