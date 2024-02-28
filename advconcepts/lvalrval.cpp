@@ -24,6 +24,14 @@ void rvalue_demo(int&& rref) {
     std::cout << "Inside rvalue_demo, received rvalue: " << rref << std::endl;
 }
 
+void func(const int& x) {
+    std::cout << "Const lvalue reference method called..." << std::endl;
+}
+
+void func(int&& x) {
+    std::cout << "rvalue reference method called..." << std::endl;
+}
+
 int main() {
     int x = 42;
     int y = 100;
@@ -41,6 +49,12 @@ int main() {
     // assigning rvalue to const lvalue reference
     const int& const_lref = 123;
     std::cout << "Value of const_lref: " << const_lref << std::endl;
+
+    // checking which out of const lvalue ref or rvalue ref methods are called in different cases
+
+    func(x);
+    func(std::move(x));
+    func(1);
 
     return 0;
 }

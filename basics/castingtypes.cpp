@@ -3,6 +3,7 @@
 using namespace std;
 
 // https://www.geeksforgeeks.org/vtable-and-vptr-in-cpp/ - IMPORTANT: VTABLE AND VPTR
+// https://stackoverflow.com/questions/573294/when-to-use-reinterpret-cast - WHEN TO USE REINTERPRET_CAST
 
 // casting: converting in between data types, which happens automatically sometimes
 // note that implicit type casting only happens between pre-defined data types

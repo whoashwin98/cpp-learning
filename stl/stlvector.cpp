@@ -201,7 +201,6 @@ int main() {
 
     std::cout << "emplace:\n";
     container.emplace(container.end(), "one");
-    */
 
     // multidimensional vectors
     std::cout << "matrix contents: " << std::endl;
@@ -212,6 +211,10 @@ int main() {
         }
         std::cout << std::endl;
     }
+    */
+
+    // vector<bool> is a specialised container provided by CPP to store boolean values in a compact manner
+    // 
 
     return 0;
 }
