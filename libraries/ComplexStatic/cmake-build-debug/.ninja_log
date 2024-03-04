@@ -1,0 +1,17 @@
+# ninja log v5
+0	309	1709548980662918010	CMakeFiles/ComplexStatic.dir/library.cpp.o	4d6c3248ad3bec22
+311	348	1709548980705405000	libComplexStatic.a	8cbb01dafccbe159
+1	300	1709549088049354671	CMakeFiles/ComplexStatic.dir/library.cpp.o	4d6c3248ad3bec22
+300	336	1709549088089091000	libComplexStatic.a	8cbb01dafccbe159
+6	323	1709549678066012318	CMakeFiles/ComplexStatic.dir/library.cpp.o	4d6c3248ad3bec22
+324	361	1709549678106875000	libComplexStatic.a	8cbb01dafccbe159
+1	663	1709554604604495375	CMakeFiles/ComplexStatic.dir/library.cpp.o	4d6c3248ad3bec22
+663	697	1709554604641968000	libComplexStatic.a	8cbb01dafccbe159
+1	323	1709554978870471443	CMakeFiles/ComplexStatic.dir/library.cpp.o	4d6c3248ad3bec22
+323	357	1709554978908070000	libComplexStatic.a	8cbb01dafccbe159
+1	268	1709555294555203394	CMakeFiles/ComplexStatic.dir/library.cpp.o	4d6c3248ad3bec22
+268	307	1709555294597866000	libComplexStatic.a	8cbb01dafccbe159
+2	307	1709555468559811173	CMakeFiles/ComplexStatic.dir/library.cpp.o	4d6c3248ad3bec22
+307	347	1709555468603001000	libComplexStatic.a	8cbb01dafccbe159
+2	307	1709555557205604020	CMakeFiles/ComplexStatic.dir/library.cpp.o	4d6c3248ad3bec22
+307	343	1709555557244829000	libComplexStatic.a	8cbb01dafccbe159
