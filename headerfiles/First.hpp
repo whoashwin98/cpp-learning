@@ -1,7 +1,10 @@
 #ifndef FIRST_HEADER
 #define FIRST_HEADER
 
-void firstFunc();
-struct Dummy {};
+#include <iostream>
+
+void firstFunc() {
+    std::cout << "First from first header file!" << std::endl;
+}
 
 #endif

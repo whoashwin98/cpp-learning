@@ -1,10 +1,8 @@
 // header files in CPP
-#include "Log.h"
-#include "Complex.h"
-#include "First.h"
-#include "First.h"
-#include "Second.h"
-#include "Third.h"
+#include "Log.hpp"
+#include "Complex.hpp"
+#include "First.hpp"
+#include "Second.hpp"
 
 /*
 The purpose of headers, and the reason why there are two kinds of source files with names ending in different 
@@ -45,7 +43,6 @@ int main() {
 
     secondFunc();
     firstFunc();
-    thirdFunc();
 
     return 0;
 }

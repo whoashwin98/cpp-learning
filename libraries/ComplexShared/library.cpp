@@ -1,5 +1,9 @@
-#include "library.h"
+#include "library.hpp"
 #include <iostream>
+
+void SharedLib::printMessage() {
+    std::cout << "This is ComplexShared library!" << std::endl;
+}
 
 ComplexShared::ComplexShared() : ComplexShared(0, 0) {}
 ComplexShared::ComplexShared(double r, double i) : re{r}, im{i} {}

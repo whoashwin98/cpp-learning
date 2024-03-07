@@ -63,9 +63,9 @@ build CMakeFiles/MyApp.dir/main.cpp.o: CXX_COMPILER__MyApp_unscanned_Debug /User
 #############################################
 # Link the executable MyApp
 
-build MyApp: CXX_EXECUTABLE_LINKER__MyApp_Debug CMakeFiles/MyApp.dir/main.cpp.o | /Users/ashwin-pt7517/Desktop/C++$ Learning/libraries/ComplexShared/cmake-build-debug/libComplexShared.dylib /Users/ashwin-pt7517/Desktop/C++$ Learning/libraries/ComplexStatic/cmake-build-debug/libComplexStatic.a
+build MyApp: CXX_EXECUTABLE_LINKER__MyApp_Debug CMakeFiles/MyApp.dir/main.cpp.o | /Users/ashwin-pt7517/Desktop/C++$ Learning/libraries/ComplexStatic/cmake-build-debug/libComplexStatic.a /Users/ashwin-pt7517/Desktop/C++$ Learning/libraries/ComplexShared/cmake-build-debug/libComplexShared.dylib /Users/ashwin-pt7517/Desktop/C++$ Learning/libraries/DummyStatic/cmake-build-debug/libDummyStatic.a //Users/ashwin-pt7517/Desktop/C++$ Learning/libraries/DummyDynamic/cmake-build-debug/libDummyDynamic.dylib
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk
-  LINK_LIBRARIES = -Wl,-rpath,"/Users/ashwin-pt7517/Desktop/C++ Learning/libraries/ComplexShared/cmake-build-debug"  "/Users/ashwin-pt7517/Desktop/C++ Learning/libraries/ComplexShared/cmake-build-debug/libComplexShared.dylib"  "/Users/ashwin-pt7517/Desktop/C++ Learning/libraries/ComplexStatic/cmake-build-debug/libComplexStatic.a"
+  LINK_LIBRARIES = -Wl,-rpath,"/Users/ashwin-pt7517/Desktop/C++ Learning/libraries/ComplexShared/cmake-build-debug" -Wl,-rpath,"//Users/ashwin-pt7517/Desktop/C++ Learning/libraries/DummyDynamic/cmake-build-debug"  "/Users/ashwin-pt7517/Desktop/C++ Learning/libraries/ComplexStatic/cmake-build-debug/libComplexStatic.a"  "/Users/ashwin-pt7517/Desktop/C++ Learning/libraries/ComplexShared/cmake-build-debug/libComplexShared.dylib"  "/Users/ashwin-pt7517/Desktop/C++ Learning/libraries/DummyStatic/cmake-build-debug/libDummyStatic.a"  "//Users/ashwin-pt7517/Desktop/C++ Learning/libraries/DummyDynamic/cmake-build-debug/libDummyDynamic.dylib"
   OBJECT_DIR = CMakeFiles/MyApp.dir
   POST_BUILD = :
   PRE_LINK = :

@@ -1,0 +1,6 @@
+# ninja log v5
+1	74	1709622161510844247	build.ninja	6f86595ebf2f589c
+0	35	1709622158653248888	CMakeFiles/DummyDynamic.dir/library.cpp.o	5fe332f1279ccc43
+35	82	1709622158691725471	libDummyDynamic.dylib	80de8d5536e952d
+0	35	1709622240824491878	CMakeFiles/DummyDynamic.dir/library.cpp.o	5fe332f1279ccc43
+35	71	1709622240859690367	libDummyDynamic.dylib	80de8d5536e952d

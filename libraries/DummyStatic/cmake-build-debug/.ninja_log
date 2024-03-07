@@ -1,0 +1,7 @@
+# ninja log v5
+0	36	1709612633056616543	CMakeFiles/DummyStatic.dir/library.cpp.o	ecfff3dce4dda9b4
+36	71	1709612633092838000	libDummyStatic.a	df05f8728f4d55e
+0	38	1709621335305565370	CMakeFiles/DummyStatic.dir/library.cpp.o	ecfff3dce4dda9b4
+38	78	1709621335346593000	libDummyStatic.a	df05f8728f4d55e
+0	35	1709621855506221668	CMakeFiles/DummyStatic.dir/library.cpp.o	ecfff3dce4dda9b4
+35	67	1709621855540526000	libDummyStatic.a	df05f8728f4d55e

@@ -1,5 +1,9 @@
-#include "library.h"
+#include "library.hpp"
 #include <iostream>
+
+void StaticLib::printMessage() {
+    std::cout << "This is ComplexStatic library!" << std::endl;
+}
 
 ComplexStatic::ComplexStatic() : ComplexStatic(0, 0) {}
 ComplexStatic::ComplexStatic(double r, double i) : re{r}, im{i} {}
